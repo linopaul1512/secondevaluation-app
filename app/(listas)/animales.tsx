@@ -1,5 +1,5 @@
 import React from 'react';
-import { SectionList, Text, View } from 'react-native';
+import { SectionList, Text, View, SafeAreaView, StyleSheet} from 'react-native';
 
 const animales = [
   { title: 'Mamíferos', data: ['León', 'Elefante', 'Delfín', 'Oso polar', 'Murciélago'] },
@@ -9,16 +9,36 @@ const animales = [
   { title: 'Peces', data: ['Tiburón blanco', 'Caballito de mar'] }
 ];
 
+
 export default function Animales() {
   return (
-    <SectionList
-      sections={animales}
-      keyExtractor={(item, index) => item + index}
-      renderItem={({ item }) => <Text style={{ paddingLeft: 20 }}>{item}</Text>}
-      renderSectionHeader={({ section: { title } }) => (
-        <Text style={{ fontWeight: 'bold', fontSize: 18, marginTop: 20 }}>{title}</Text>
-      )}
-      contentContainerStyle={{ padding: 20 }}
-    />
+    <SafeAreaView style={styles.container}>
+      <SectionList
+        sections={animales}
+        keyExtractor={(item, index) => item + index}
+        renderItem={({ item }) => <Text style={styles.item}>{item}</Text>}
+        renderSectionHeader={({ section: { title } }) => (
+          <Text style={styles.header}>{title}</Text>
+        )}
+      />
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10
+  },
+  header: {
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginTop: 20,
+    backgroundColor: '#eee'
+  },
+  item: {
+    paddingLeft: 20,
+    fontSize: 16,
+    paddingVertical: 4
+  }
+});
