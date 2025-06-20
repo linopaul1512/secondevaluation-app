@@ -1,14 +1,18 @@
-import { StyleSheet } from 'react-native';
+import { Link } from 'expo-router';
+import { View, Text, StyleSheet, Button } from 'react-native';
 
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
-
-export default function TabOneScreen() {
+export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+      <Text style={styles.title}>Bienvenido</Text>
+
+      <Link href="/(tabs)/(listas)" asChild>
+        <Button title="Ir a Listas" />
+      </Link>
+
+      <Link href="/(tabs)/(otros)" asChild>
+        <Button title="Ir a Otras Vistas" />
+      </Link>
     </View>
   );
 }
@@ -16,16 +20,13 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    padding: 20,
     justifyContent: 'center',
+    gap: 20,
   },
   title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+    fontSize: 24,
+    marginBottom: 20,
+    textAlign: 'center',
   },
 });
